@@ -2,7 +2,7 @@
 
 <form class="form mt-4" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
     <div class="form-group mb-3 row">
-        <input placeholder="e-mail" class="form-control" formControlName="email" />
+        <input placeholder="e-mail" class="form-control" email="true" formControlName="email" />
         <app-mensagem *ngIf="novoUsuarioForm.get('email')?.errors?.['required'] &&
         novoUsuarioForm.get('email')?.touched" mensagem="E-mail obrigatório"></app-mensagem>
         <app-mensagem *ngIf="novoUsuarioForm.get('email')?.errors?.['email'] &&
@@ -19,13 +19,15 @@
         <input placeholder="Usuário" class="form-control" formControlName="userName" />
         <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors?.['minusculo'] &&
         novoUsuarioForm.get('userName')?.touched" mensagem="O nome do usuário deve ter letra minuscula."></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors?.['usuarioExistente']" mensagem="Usuário já existe"></app-mensagem>
     </div>
 
     <div class="form-group mb-3 row">
         <input type="password" placeholder="Senha" class="form-control" formControlName="password" />
+        <app-mensagem *ngIf="novoUsuarioForm.errors?.['senhaIgualUsuario']" mensagem="Senha deve ser diferente do nome do usuário"></app-mensagem>
     </div>
 
     <button class="btn btn-primary btn-block">Cadastro</button>
 </form>
 
-<p>Já é um usuário? <a [routerLink]="['']">Faça login.</a></p>
+<p>Já é um usuário?<a [routerLink]="['']"> Faça login.</a></p>
