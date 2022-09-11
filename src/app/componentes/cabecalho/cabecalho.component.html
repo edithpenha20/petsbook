@@ -1,10 +1,10 @@
 <header class="sticky-top">
-    <nav class="navbar navbar-light bg-white">
-        <a class="navbar-brand">Pets Book</a>
-        <div *ngIf="user$ | async as user">
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand mx-4">Pets Book</a>
+        <div class="mx-4" *ngIf="user$ | async as user">
             <div *ngIf="user.name; else login">
-                <i class="fa fa-user-circle mr-1"></i>
-                <a class="mr-1">{{ user.name }}</a>
+                <i class="fa fa-user-circle"></i>
+                <a class="link-dark mx-2">{{ user.name }}</a>
                 <a (click)="logout()">Logout</a>
             </div>
         </div>
